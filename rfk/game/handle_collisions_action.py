@@ -17,7 +17,7 @@ class HandleCollisionsAction(Action):
         """
         marquee = cast["marquee"][0] # there's only one
         robot = cast["robot"][0] # there's only one
-        artifacts = cast["artifact"]
+        artifacts = cast["artifact"] # list of all the artifacts 
         marquee.set_text("")
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
