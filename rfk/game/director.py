@@ -20,8 +20,8 @@ class Director:
             cast (dict): The game actors {key: tag, value: list}.
             script (dict): The game actions {key: tag, value: list}.
         """
-        self._cast = cast
-        self._script = script
+        self._cast = cast  # {marquee: marquee, robot: robot, artifacts: [list from text file]}
+        self._script = script  #{input, update, output}
         
     def start_game(self):
         """Starts the game loop to control the sequence of play."""

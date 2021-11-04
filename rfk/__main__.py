@@ -17,7 +17,7 @@ def main(screen):
     cast = {}
 
     marquee = Actor()
-    marquee.set_tag("marquee")
+    #marquee.set_tag("marquee")
     marquee.set_text("")
     marquee.set_position(Point(1, 0))
     cast["marquee"] = [marquee]
@@ -26,12 +26,12 @@ def main(screen):
     y = int(constants.MAX_Y / 2)
     position = Point(x, y)
     robot = Actor()
-    robot.set_tag("robot")
+    #robot.set_tag("robot")
     robot.set_text("#")
     robot.set_position(position)
     cast["robot"] = [robot]
 
-    artifacts = []
+    artifacts = [] # a list taken from messages.txt
     for n in range(constants.ARTIFACTS):
         text = chr(random.randint(33, 126))
         description = constants.MESSAGES[n]
@@ -39,7 +39,7 @@ def main(screen):
         y = random.randint(1, constants.MAX_Y - 1)
         position = Point(x, y)
         artifact = Actor()
-        artifact.set_tag("artifact")
+        # artifact.set_tag("artifact")
         artifact.set_description(description)
         artifact.set_text(text)
         artifact.set_position(position)
@@ -56,12 +56,12 @@ def main(screen):
     handle_collisions_action = HandleCollisionsAction()
     draw_actors_action = DrawActorsAction(output_service)
 
-    script["input"] = [control_actors_action]
-    script["update"] = [move_actors_action, handle_collisions_action]
+    script["input"] = [control_actors_action] # sets the direction of the robot
+    script["update"] = [move_actors_action, handle_collisions_action] # moves the pieces around and checks if they are in the same position, if yes then it prints from the text file. 
     script["output"] = [draw_actors_action]
 
     # start the game
-    director = Director(cast, script)
+    director = Director(cast, script) # cast = {"marquee": [marquee(Actor())], "robot": [robot(Actor())], "artifact": [artifacts]},      script = {"input": robot direction, "update":  [move_actors_action, handle_collisions_action]}
     director.start_game()
 
 Screen.wrapper(main)
